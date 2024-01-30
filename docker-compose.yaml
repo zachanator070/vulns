@@ -1,0 +1,22 @@
+
+services:
+  httpd:
+    build:
+      context: .
+    volumes:
+      - ./public:/var/www/html
+    ports:
+      - 80:80
+      - 25565:25565
+
+  ftp:
+    image: fauria/vsftpd:latest
+    volumes:
+      - ./public:/home/vsftpd/zachj
+    ports:
+      - 20:20
+      - 21:21
+      - 21100-21110:21100-21110
+    environment:
+      FTP_USER: zachj
+      FTP_PASS: isawesome
